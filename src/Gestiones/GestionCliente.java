@@ -8,6 +8,7 @@ package Gestiones;
 
 import CapaDatos.Conexion;
 import ClasePOCO.Cliente;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 
 
@@ -91,11 +92,22 @@ public class GestionCliente implements IGestion
     }
 
     @Override
-    public void Consultar() throws SQLException {
+    public void Consultar() throws SQLException
+    {
        // throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
     try{
+    
     Conexion.GetInstancia().Conectar();
-    Conexion.GetInstancia().Ejecutar("select * from cliente WHERE Cedula = "+client.getCedula());
+    
+    ResultSet cn = Conexion.GetInstancia().EjecutarConsulta("select cedula, Nombre, Direccion, Cupo from cliente WHERE Cedula = "+client.getCedula());
+    while(cn.next())
+    {
+        this.client.setCedula(cn.getString(1));
+        this.client.setDireccion(cn.getString(2));
+        this.client.setNombre(cn.getString(3));
+        this.client.setCupo(cn.getDouble(4));
+                
+    }
     Conexion.GetInstancia().Desconectar();
     }
     catch(SQLException e)

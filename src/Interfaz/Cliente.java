@@ -205,7 +205,8 @@ public void  pedirValores(){
         {
 
         gestClient.Consultar();
-        enviarValores();
+        pedirValores();
+      //  enviarValores();
 
                 // JOptionPane.showMessageDialog(this, "El dato se grabo Correctamente");
         }
@@ -217,7 +218,7 @@ public void  pedirValores(){
 
     private void btnNuevoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNuevoActionPerformed
         // TODO add your handling code here:
-        pedirValores();
+        
         try
         {
         gestClient.Nuevo();
@@ -229,6 +230,7 @@ public void  pedirValores(){
         {
             JOptionPane.showMessageDialog(this, e.getMessage());
         }
+        pedirValores();
     }//GEN-LAST:event_btnNuevoActionPerformed
 
     private void btnModificarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnModificarActionPerformed

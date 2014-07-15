@@ -90,5 +90,18 @@ public class Conexion
         }
     }
     
+    public ResultSet EjecutarConsulta(String cadena) throws SQLException
+    {
+        try{
+        Sentencia=Conn.prepareStatement(cadena);
+        setDeResultados = Sentencia.executeQuery();
+        return setDeResultados;
+        }
+        catch(SQLException e)
+        {
+            throw e;
+        }
+    }
+    
     
 }
